@@ -2,53 +2,42 @@ mapboxgl.accessToken =
     'pk.eyJ1IjoiZ3BlcmVpcmExIiwiYSI6ImNsNDIwN3dnMzAya2IzanIxenNlYm1sbmIifQ.Iw7cB4iJxs2wjI2zUhtVSg';
 
 
-    let map = new mapboxgl.Map({
-            container: 'map', // container ID
-            style: 'mapbox://styles/gpereira1/cl2ctrpl6001214nuk8eq64nx',
-            //style: 'mapbox://styles/mapbox/light-v10',
-            zoom: 5, // starting zoom
-            minZoom: 4,
-            maxZoom: 18,
-            center: [-83.75, 48.44], // starting center
-            projection: {
-                    name: 'albers',
-                    parallels: [25, 50]
-                } // starting projection
+const bounds = [
+    [-75.24000016400674, 39.8901849890572],
+    [-75.11807534849851, 39.98239529631935]
+]
 
-        });
-
-map.on('load', () => { //simplifying the function statement: arrow with brackets to define a function
-
-<<<<<<< HEAD
 let map = new mapboxgl.Map({
     container: 'map', // container ID
     style: 'mapbox://styles/mapbox/streets-v11', //'mapbox://styles/gpereira1/cl49i6d4j000314n3o7ihl0f3',
     //style: 'mapbox://styles/mapbox/light-v10',
-    zoom: 10, // starting zoom
-    minZoom: 10,
-    maxZoom: 13,
+    zoom: 11, // starting zoom
+    minZoom: 11,
+    maxZoom: 14,
     center: [-75.165222, 39.952583], // starting center
     projection: {
         name: 'albers',
         parallels: [25, 50]
     } // starting projection
 
-=======
->>>>>>> parent of 01bc354c (commit maps + tiles)
+});
 
-
+map.on('load', () => {
 
     map.addSource('philly-base', {
         'type': 'raster',
         'tiles': [
-            'philly-base/philly-tiles/{z}/{x}/{y}.png'
+            'philly-base-tiles/{z}/{x}/{y}.png'
         ],
         'tileSize': 256,
-        'attribution': 'Map tiles designed by Bo Zhao</a>'
+        'minZoom': 11,
+        'maxZoom': 14
     });
 
+
+
     map.addLayer({
-        'id': 'philly',
+        'id': 'philly-base',
         'type': 'raster',
         'layout': {
             'visibility': 'visible'
@@ -57,7 +46,6 @@ let map = new mapboxgl.Map({
     });
 
 
-<<<<<<< HEAD
     map.addSource('philly-thematic', {
         'type': 'raster',
         'tiles': [
@@ -189,6 +177,4 @@ map.on('idle', () => {
         layers.appendChild(link);
 
     }
-=======
->>>>>>> parent of 01bc354c (commit maps + tiles)
 });
